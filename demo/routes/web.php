@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/address_picker', [AddressController::class, 'showAddressPicker']);
-Route::get('/get_cities/{provinceId}', [AddressController::class, 'getCities']);
+Route::get('/get_cities/{provinceName}', [AddressController::class, 'getCities']);

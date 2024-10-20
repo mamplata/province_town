@@ -11,13 +11,14 @@ class Province extends Model
     protected $primaryKey = "province_id";
 
     protected $hidden = [
+        'province_id',
         'region_id',
     ];
 
     public function citytowns()
     {
         return $this->hasMany(CityTown::class, 'province_id', 'province_id')
-            ->select('citytown_id', 'province_id', 'citytown_name') // Select the necessary fields
+            ->select('citytown_id', 'province_id', 'citytown_name')
             ->orderBy('citytown_name', 'asc');
     }
 }

@@ -10,6 +10,7 @@ class CityTown extends Model
     protected $primaryKey = "citytown_id";
 
     protected $hidden = [
+        "citytown_id",
         "province_id",
     ];
 

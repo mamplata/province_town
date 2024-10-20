@@ -14,9 +14,20 @@ class AddressController extends Controller
         return view('address', ['provinces' => $provinces]);
     }
 
-    public function getCities($provinceId)
+    public function getCities($provinceName)
     {
-        $cities = CityTown::where('province_id', $provinceId)->orderBy('citytown_name', 'asc')->get();
-        return response()->json($cities);
+        // Get the provinceId from the Province model using the provinceName
+        $province = Province::where('province_name', $provinceName)->first();
+
+        // If the province is found, get the cities based on provinceId
+        if ($province) {
+            $cities = CityTown::where('province_id', $province->province_id)
+                ->orderBy('citytown_name', 'asc')
+                ->get();
+            return response()->json($cities);
+        }
+
+        // If no matching province is found, return an empty array or error response
+        return response()->json(['error' => 'Province not found'], 404);
     }
 }
